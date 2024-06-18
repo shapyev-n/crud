@@ -1,0 +1,127 @@
+.login {
+  padding-block: 50px;
+  background: #212529;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  border-bottom: 4px solid #ffffff4e;
+
+  .content {
+    max-width: 500px;
+    width: 100%;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #000;
+    .h1 {
+      background: #6c757d;
+      border-bottom: 1px solid #000;
+      h1 {
+        color: #fff;
+        font-size: 28px;
+        font-weight: 600;
+        padding-block: 20px;
+        text-align: center;
+      }
+    }
+    .inp {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      p {
+        font-size: 24px;
+        font-weight: 600;
+      }
+      input {
+        width: 80%;
+        height: 50px;
+        background: #6c757d;
+        border: 1px solid #000;
+        outline: none;
+        padding-inline: 20px;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 18px;
+        &::placeholder {
+          color: #fff;
+          font-size: 14px;
+          opacity: 0.6;
+        }
+      }
+      .pass {
+        width: 80%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        span {
+          position: absolute;
+          right: 15px;
+        }
+        input {
+          width: 100%;
+        }
+      }
+    }
+    .btns {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 30px;
+      gap: 20px;
+      button {
+        padding: 10px 30px;
+        border: 0;
+        border-radius: 20px;
+        background: #6c757d;
+        color: #fff;
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      .google {
+        border-radius: 50%;
+        padding: 10px;
+      }
+    }
+  }
+  .info {
+    padding: 10px;
+    background: #fff;
+    border: 1px solid #000;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    span {
+      opacity: 0.7;
+      font-size: 24px;
+      font-weight: 400;
+    }
+    p {
+      font-size: 24px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.5s;
+      &:hover {
+        opacity: 0.8;
+        text-decoration: underline;
+      }
+    }
+    h3 {
+      display: flex;
+      align-items: flex-end;
+      color: #000000aa;
+      gap: 10px;
+      p {
+        color: #000;
+      }
+    }
+  }
+}

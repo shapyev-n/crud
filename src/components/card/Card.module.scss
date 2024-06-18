@@ -1,0 +1,85 @@
+.card {
+  width: 26.736vw;
+  height: 25.486vw;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: #e9ecef;
+  position: relative;
+  overflow: hidden;
+  &:hover {
+    .btns {
+      display: flex;
+      animation: btns 1s alternate ease-in-out;
+    }
+  }
+  .img {
+    width: 100%;
+    height: 180px;
+    text-align: center;
+    border-radius: inherit;
+    overflow: hidden;
+    img {
+      width: auto;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .p {
+    width: 80%;
+    height: 38px;
+    overflow: auto;
+    p {
+      font-size: 16px;
+      text-align: center;
+    }
+  }
+  span {
+    font-size: 24px;
+    font-weight: 600;
+  }
+  .btn {
+    display: flex;
+    gap: 20px;
+    button {
+      padding: 6px 10px;
+      background: #006eff;
+      border-radius: 10px;
+      border: 0;
+      color: #fff;
+      transition: 0.4s;
+      &:active {
+        scale: 0.9;
+      }
+    }
+  }
+  .btns {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    button {
+      width: 40px;
+      height: 40px;
+      border: 0;
+      border-radius: 50%;
+      &:hover {
+        box-shadow: #006eff6e 0 0px 20px 1px;
+      }
+    }
+  }
+}
+@keyframes btns {
+  from {
+    right: -60px;
+  }
+  to {
+    top: 10px;
+  }
+}

@@ -1,0 +1,39 @@
+.header {
+  background: #acb5bd;
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    .logo {
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      height: 100px;
+      img {
+        width: auto;
+        scale: 2;
+        height: inherit;
+      }
+    }
+    .nav {
+      max-width: 700px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      button {
+        border: 0;
+        background: transparent;
+        font-size: 20px;
+        font-weight: 600;
+      }
+      .icons {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+      }
+    }
+  }
+}

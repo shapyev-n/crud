@@ -1,0 +1,105 @@
+.list {
+  padding-block: 30px;
+  display: flex;
+  .sidebar {
+    max-width: 27.778vw;
+    width: 100%;
+    background: #6c757d;
+    border-right: 15px solid #fff;
+    color: #fff;
+    padding-block: 40px;
+    padding-left: 5%;
+    .content {
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      gap: 35px;
+      p {
+        font-size: 30px;
+        font-weight: 600;
+      }
+      .box {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        p {
+          font-size: 30px;
+          font-weight: 600;
+        }
+        .price {
+          align-items: flex-end;
+          justify-content: space-between;
+          padding-left: 0;
+          opacity: 1;
+          p {
+            font-size: 13px;
+            font-weight: 400;
+            opacity: 0.7;
+          }
+          span {
+            font-size: 18px;
+            font-weight: 800;
+          }
+        }
+        button {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          background: transparent;
+          border: 0;
+          opacity: 0.7;
+          padding-left: 10px;
+          color: #fff;
+          font-size: 10px;
+          transition: 1s;
+          &:focus {
+            opacity: 1;
+            span {
+              font-size: 18px;
+              font-weight: bold;
+            }
+          }
+          span {
+            font-size: 15px;
+            font-weight: 400;
+            transition: 0.5s;
+          }
+        }
+      }
+    }
+  }
+  .products {
+    background: #212529;
+    width: 100%;
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-items: center;
+    .content {
+      display: grid;
+      grid-template-columns: repeat(2, 46.5%);
+      gap: 60px;
+    }
+    .skelton {
+      width: 26.736vw;
+      height: 25.486vw;
+      border-radius: 10px;
+      background: #fff;
+      animation: skelton 2s infinite ease;
+      opacity: 0.7;
+    }
+  }
+}
+
+@keyframes skelton {
+  0% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}

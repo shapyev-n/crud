@@ -1,0 +1,87 @@
+.form {
+  padding: 50px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  .content {
+    max-width: 450px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 18px;
+    select,
+    button,
+    input {
+      height: 40px;
+      border-radius: 8px;
+      outline: none;
+      padding: 0 10px;
+    }
+    table {
+      tr {
+        td {
+          padding: 4.5px;
+          select {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+  .box {
+    max-width: 250px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    .img {
+      max-width: 400px;
+      width: 100%;
+      height: 250px;
+      border: 1px solid #000;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      img {
+        width: auto;
+        height: 100%;
+        object-fit: cover;
+      }
+      p {
+        font-size: 22px;
+        opacity: 0.5;
+      }
+    }
+    button {
+      width: 200px;
+      height: 40px;
+      border-radius: 8px;
+      border: 0;
+      color: #fff;
+      font-weight: 600;
+      opacity: 0.7;
+      cursor: default;
+    }
+    .button {
+      width: 100px;
+      height: 40px;
+      border-radius: 8px;
+      border: 0;
+      background: #006eff;
+      color: #fff;
+      font-weight: 600;
+      opacity: 0.7;
+      cursor: pointer;
+      &:active {
+        background: #006eff;
+        opacity: 1;
+      }
+    }
+  }
+}

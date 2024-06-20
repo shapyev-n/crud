@@ -3,11 +3,11 @@ import scss from "./Card.module.scss";
 import { useCard } from "../../context/CardContext";
 
 const CardBasket = () => {
-  const { card } = useCard();
+  const { card, deleteProductFromCard } = useCard();
   return (
     <div id={scss.cardBasket}>
       <div className="container">
-        {card.products.length > 0 && card !== null ? (
+        {card.products.length > 0 ? (
           <div className={scss.cardBasket}>
             <div className={scss.txt}>
               <p>PRODUCT</p>
@@ -18,7 +18,9 @@ const CardBasket = () => {
               {card.products.map((el, idx) => (
                 <div key={idx} className={scss.box}>
                   <div className={scss.btn}>
-                    <button>❌</button>
+                    <button onClick={() => deleteProductFromCard(el.item.id)}>
+                      ❌
+                    </button>
                   </div>
                   <div className={scss.img}>
                     <img src={el.item.image} alt="" />
@@ -32,7 +34,7 @@ const CardBasket = () => {
                   <p>{el.item.price} som</p>
                 </div>
               ))}
-              
+
               <h1>1000 som</h1>
             </div>
             <div className={scss.btns}>

@@ -4,14 +4,12 @@ const cardContext = createContext();
 export const useCard = () => useContext(cardContext);
 
 const initState = {
-  card: JSON.parse(localStorage.getItem("card"))
+  card: JSON.parse(localStorage.getItem("card")),
 };
 
 const reducer = (state = initState, action) => {
   switch (action.type) {
     case "GET":
-      return { ...state, card: action.payload };
-    case "ADD_PRODUCT":
       return { ...state, card: action.payload };
 
     default:
@@ -36,9 +34,8 @@ const CardContext = ({ children }) => {
 
     card.products.push(newProduct);
     localStorage.setItem("card", JSON.stringify(card));
-
     dispatch({
-      type: "ADD_PRODUCT",
+      type: "GET",
       payload: card,
     });
     checkProductInCard(product.id);
@@ -63,16 +60,25 @@ const CardContext = ({ children }) => {
   function checkProductInCard(id) {
     let card = state.card;
     if (card) {
-      let obj = card.products.find((product) => product.item.id === id);
+      let obj = card.products.some((product) => product.item.id === id);
       return obj ? true : false;
     }
+  }
+
+  function deleteProductFromCard(id) {
+    let card = JSON.parse(localStorage.getItem("card"));
+    card.products = card.products.filter((el) => el.item.id !== id);
+    // card.totalCount = calcTotalPrice(card.products);
+    localStorage.setItem("card", JSON.stringify(card));
+    getProductFromCard();
   }
 
   const values = {
     addProductToCard,
     getProductFromCard,
     checkProductInCard,
-    card: state.card, // Добавлено состояние card в values
+    card: state.card,
+    deleteProductFromCard
   };
   return <cardContext.Provider value={values}>{children}</cardContext.Provider>;
 };

@@ -16,7 +16,7 @@ const ListProduct = () => {
     filterProductsByCategoryBrandType,
   } = useProduct();
   
-  const [value, setValue] = useState([0, 100]);
+  const [value, setValue] = useState([0, 0]);
   const [priceRange, setPriceRange] = useState({ min: 0, max: 0 });
   const [category, setCategory] = useState("");
   const [brand, setBrand] = useState("");
@@ -69,6 +69,8 @@ const ListProduct = () => {
   };
 
   return (
+    <div className={scss.main}>
+
     <div className={scss.list}>
       <div className={scss.sidebar}>
         <div className={scss.content}>
@@ -152,6 +154,7 @@ const ListProduct = () => {
         </div>
         {data.length > 4 ? <PaginationProduct /> : ""}
       </div>
+    </div>
     </div>
   );
 };

@@ -1,12 +1,12 @@
 .card {
   width: 26.736vw;
   height: 25.486vw;
-  border-radius: 10px;
+  border-radius: 0.694vw;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
+  padding: 1.042vw;
   background: #e9ecef;
   position: relative;
   overflow: hidden;
@@ -30,27 +30,28 @@
   }
   .p {
     width: 80%;
-    height: 38px;
+    height: 2.639vw;
     overflow: auto;
     p {
-      font-size: 16px;
+      font-size: 1.111vw;
       text-align: center;
     }
   }
   span {
-    font-size: 24px;
+    font-size: 1.667vw;
     font-weight: 600;
   }
   .btn {
     display: flex;
-    gap: 20px;
+    gap: 1.389vw;
     button {
-      padding: 6px 10px;
+      padding: 0.417vw 1vw;
       background: #006eff;
-      border-radius: 10px;
+      border-radius: 0.694vw;
       border: 0;
       color: #fff;
       transition: 0.4s;
+      font-size: 1.111vw;
       &:active {
         scale: 0.9;
       }
@@ -58,28 +59,257 @@
   }
   .btns {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 0.694vw;
+    right: 0.694vw;
     z-index: 1;
     display: none;
     flex-direction: column;
-    gap: 20px;
+    gap: 1.389vw;
     button {
-      width: 40px;
-      height: 40px;
+      width: 2.778vw;
+      height: 2.778vw;
       border: 0;
       border-radius: 50%;
       &:hover {
-        box-shadow: #006eff6e 0 0px 20px 1px;
+        box-shadow: #006eff6e 0 0px 1.389vw 1px;
       }
     }
   }
 }
+.main {
+  padding: 50px 0;
+  .cardOne {
+    width: 80%;
+    margin: 0 auto;
+    padding: 50px;
+    display: flex;
+    gap: 50px;
+    border-radius: 20px;
+    box-shadow: #212529 0 10px 20px 10px;
+    .img {
+      width: 300px;
+      height: 300px;
+      img {
+        width: auto;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    .box {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      .txt {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        h1 {
+          font-size: 30px;
+        }
+        p {
+          font-size: 30px;
+        }
+      }
+      table {
+        tr {
+          height: 40px;
+          td {
+            span {
+              opacity: 0.5;
+              font-size: 16px;
+            }
+            p {
+              text-transform: capitalize;
+              font-size: 26px;
+            }
+          }
+        }
+      }
+      .btns {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        margin-top: auto;
+        button {
+          padding: 10px 30px;
+          border-radius: 10px;
+          border: 0;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+#cardBasket {
+  background: #212529;
+  padding: 50px 0;
+  border-bottom: #adb5bd 4px solid;
+  .cardBasket {
+    width: 90%;
+    margin: 0 auto;
+    .txt {
+      width: 100%;
+      height: 100px;
+      background: #343a40;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      color: #fff;
+      p {
+        font-size: 24px;
+        font-weight: 600;
+      }
+    }
+    .content {
+      width: 100%;
+      background: #efefef;
+      h1{
+        padding: 40px ;
+      }
+      .box {
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        padding: 30px 0;
+        border-top: #212529 1px solid;
+        border-bottom: #212529 1px solid;
+        position: relative;
+        .btn {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          button {
+            border: 0;
+            opacity: 0.4;
+            &:hover {
+              opacity: 1;
+            }
+          }
+        }
+        .img {
+          width: 250px;
+          height: 270px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 4px;
+          img {
+            width: auto;
+            height: 250px;
+            object-fit: cover;
+          }
+          span {
+            font-size: 16px;
+          }
+        }
+        .count {
+          height: 70px;
+          background: #6c757d;
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          span {
+            width: 80px;
+            font-size: 24px;
+            font-weight: 600;
+            text-align: center;
+          }
+          color: #fff;
+          button {
+            width: 30px;
+            height: 100%;
+            background: #343a40;
+            border: 0;
+            color: #fff;
+            font-size: 24px;
+            font-weight: 600;
+          }
+        }
+        p {
+          color: #212529;
+          width: 200px;
+          font-size: 24px;
+          font-weight: 600;
+          text-align: right;
+        }
+      }
+    }
+    .btns {
+      width: 100%;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      button {
+        padding: 10px;
+        background: #adb5bd;
+        color: #212529;
+        border: 0;
+        font-size: 24px;
+        font-weight: 600;
+        transition: 0.5s;
+        &:active {
+          scale: 0.95;
+        }
+      }
+    }
+  }
+}
+
 @keyframes btns {
   from {
-    right: -60px;
+    right: -4.167vw;
   }
   to {
-    top: 10px;
+    top: 0.694vw;
+  }
+}
+@media (min-width: 1440px) {
+  .card {
+    width: 380px;
+    height: 360px;
+    border-radius: 10px;
+    padding: 15px;
+    .p {
+      height: 38px;
+      p {
+        font-size: 16px;
+      }
+    }
+    span {
+      font-size: 24px;
+    }
+    .btn {
+      button {
+        padding: 6px 15px;
+        border-radius: 10px;
+        font-size: 16px;
+      }
+    }
+    .btns {
+      top: 10px;
+      right: 10px;
+      gap: 20px;
+      button {
+        width: 40px;
+        height: 40px;
+        &:hover {
+          box-shadow: #006eff6e 0 0px 20px 1px;
+        }
+      }
+    }
+  }
+  @keyframes btns {
+    from {
+      right: -60px;
+    }
+    to {
+      top: 10px;
+    }
   }
 }

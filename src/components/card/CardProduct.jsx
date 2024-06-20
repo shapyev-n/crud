@@ -1,13 +1,19 @@
-import {} from "react";
+import { useEffect } from "react";
 import scss from "./Card.module.scss";
 import { useProduct } from "../../context/ProductContext";
 import { useNavigate } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useCard } from "../../context/CardContext";
 
 const CardProduct = ({ el }) => {
-  const { deleteProduct } = useProduct();
+  const { deleteProduct, readProduct } = useProduct();
+  const { addProductToCard, checkProductInCard } = useCard();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    readProduct();
+  }, []);
 
   return (
     <div className={scss.card}>
@@ -19,7 +25,19 @@ const CardProduct = ({ el }) => {
       </div>
       <span>{el.price} сом</span>
       <div className={scss.btn}>
-        <button>ADD TO BASKET</button>
+        {checkProductInCard(el.id) ? (
+          <button disabled style={{ background: "gray" }}>
+            ALLREADY TO BASKET
+          </button>
+        ) : (
+          <button
+            onClick={() => {
+              addProductToCard(el);
+            }}
+          >
+            ADD TO BASKET
+          </button>
+        )}
       </div>
       <div className={scss.btns}>
         <button

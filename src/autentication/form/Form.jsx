@@ -35,11 +35,14 @@ const Form = ({ isAdmin }) => {
             </span>
           </div>
         </div>
+        <div className={scss.btns}>
+
         {isAdmin ? (
           <button>LOG IN AS A SELLER</button>
         ) : (
           <button>LOG IN</button>
         )}
+        </div>
       </div>
       <div className={scss.info}>
         {isAdmin ? (

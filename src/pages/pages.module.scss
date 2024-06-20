@@ -1,7 +1,8 @@
 .home {
   padding-top: 20px;
-  position: relative;
   .box {
+    max-width: 1440px;
+    margin: 0 auto;
     padding-block: 30px;
     display: flex;
     align-items: center;
@@ -20,86 +21,93 @@
       text-align: center;
     }
   }
-  .scroll {
+  .main {
+    max-width: 1440px;
+    margin: 0 auto;
     background: #ced4da;
     padding-block: 30px;
-    .content {
-      overflow-x: scroll;
-      display: flex;
-      gap: 13px;
-      padding: 20px;
-      .card {
-        width: 270px;
-        height: 350px;
-        flex-shrink: 0;
-        border-radius: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        overflow: hidden;
-        &:hover {
-          box-shadow: #21252926 0 5px 10px 10px;
-        }
-        .img {
-          width: 100%;
-          height: 300px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border-radius: inherit;
-          overflow: hidden;
-          img {
-            width: auto;
-            height: 100%;
-            object-fit: cover;
-          }
-        }
-        .txt {
-          width: 90%;
-          height: 30px;
-          overflow: auto;
-          margin-bottom: 10px;
-          p {
-            color: #212529;
-            font-size: 24px;
-            font-weight: 600;
-            text-align: center;
-          }
-        }
-      }
-      .skeltton {
-        width: 100%;
+    .scroll {
+      position: relative;
+      .content {
         overflow-x: scroll;
         display: flex;
         gap: 13px;
+        padding: 20px 15px;
         .card {
           width: 270px;
           height: 350px;
           flex-shrink: 0;
-          background: #212529;
-          opacity: 1;
-          animation: skelton 2s infinite ease;
+          border-radius: 20px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-between;
+          overflow: hidden;
+          &:hover {
+            box-shadow: #21252926 0 5px 10px 10px;
+          }
+          .img {
+            width: 100%;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: inherit;
+            overflow: hidden;
+            img {
+              width: auto;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+          .txt {
+            width: 90%;
+            height: 30px;
+            overflow: auto;
+            margin-bottom: 10px;
+            p {
+              color: #212529;
+              font-size: 24px;
+              font-weight: 600;
+              text-align: center;
+            }
+          }
+        }
+        .skeltton {
+          width: 100%;
+          overflow-x: scroll;
+          display: flex;
+          gap: 13px;
+          .card {
+            width: 270px;
+            height: 350px;
+            flex-shrink: 0;
+            background: #212529;
+            opacity: 1;
+            animation: skelton 2s infinite ease;
+          }
         }
       }
-    }
-  }
-  .arrows {
-    width: 100%;
-    height: 50px;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    bottom: 220px;
-    z-index: 1;
-    button {
-      width: 5%;
-      height: 100%;
-      font-size: 40px;
-      border: 0;
-      background: transparent;
-      transform: scaleY(2);
+      button {
+        width: 5%;
+        height: 100%;
+        font-size: 3vw;
+        border: 0;
+        background: transparent;
+        transform: scaleY(2);
+      }
+      .left {
+        position: absolute;
+        left: -50px;
+        bottom: 20px;
+        z-index: 10;
+      }
+      .right {
+        position: absolute;
+        right: -50px;
+        bottom: 20px;
+        z-index: 1;
+      }
     }
   }
 }

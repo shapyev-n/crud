@@ -2,8 +2,10 @@ import {} from "react";
 import scss from "./Footer.module.scss";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
+import { useAuth } from "../../../context/AuthContext";
 
 const Footer = () => {
+  const { user } = useAuth();
   return (
     <footer className={scss.footer}>
       <div className="container">
@@ -15,15 +17,22 @@ const Footer = () => {
               Enter your email address and let us notify you about news and
               discounts...
             </p>
-            <div className={scss.signUp}>
-              <input
-                type="text"
-                name=""
-                id=""
-                placeholder="example@gmail.com"
-              />
-              <button>SIGN UP</button>
-            </div>
+            {user ? (
+              <div className={scss.signUp}>
+                <input type="text" placeholder="leave feedback" />
+                <button>SEND</button>
+              </div>
+            ) : (
+              <div className={scss.signUp}>
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  placeholder="example@gmail.com"
+                />
+                <button>SIGN UP</button>
+              </div>
+            )}
           </div>
           <div className={scss.right}>
             <h2>STAY UP TO DATE</h2>

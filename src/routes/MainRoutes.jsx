@@ -8,6 +8,8 @@ import ListProduct from "../components/products/ListProduct";
 import LoginAdmin from "../autentication/LoginAdmin";
 import LoginClient from "../autentication/LoginClient";
 import Register from "../autentication/Register";
+import DetailsPage from "../pages/DetailsPage";
+import CardBasket from "../components/card/CardBasket";
 
 const MainRoutes = () => {
   const privat = [
@@ -51,6 +53,16 @@ const MainRoutes = () => {
     {
       path: "/register",
       element: <Register />,
+      id: Date.now(),
+    },
+    {
+      path: "/details/:id",
+      element: <DetailsPage />,
+      id: Date.now(),
+    },
+    {
+      path: "/basket",
+      element: <CardBasket />,
       id: Date.now(),
     },
   ];

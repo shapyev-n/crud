@@ -39,6 +39,7 @@ const Register = () => {
 
   console.log(error);
   return (
+      <div id={scss.register}>
     <div className="container">
       <div className={scss.register}>
         <div className={scss.content}>
@@ -150,6 +151,7 @@ const Register = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

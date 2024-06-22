@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { auth } from "../firebase";
@@ -33,9 +34,17 @@ const AuthContext = ({ children }) => {
   const navigate = useNavigate();
 
   //   !register
-  async function register(email, password) {
+  async function register(firstName, lastName, email, password) {
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+      await updateProfile(user, {
+        displayName: `${firstName} ${lastName}`,
+      });
       navigate("/");
     } catch (error) {
       alert(error.message);
@@ -43,8 +52,8 @@ const AuthContext = ({ children }) => {
   }
 
   // !login
-  function login(email, password) {
-    return signInWithEmailAndPassword(auth, email, password);
+  function login(email, password, firstName) {
+    return signInWithEmailAndPassword(auth, email || firstName, password);
   }
 
   //   !google

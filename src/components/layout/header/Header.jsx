@@ -1,17 +1,22 @@
 import { useState } from "react";
 import scss from "./Header.module.scss";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import MailIcon from "@mui/icons-material/Mail";
 import WorkIcon from "@mui/icons-material/Work";
 import { useNavigate } from "react-router-dom";
 import AdminPanel from "../../admin/AdminPanel";
 import { useAuth } from "../../../context/AuthContext";
-import { Avatar, Tooltip } from "@mui/material";
+import { Avatar, Badge, Tooltip } from "@mui/material";
+import { ADMIN } from "../../../helpers/const";
+import { useCard } from "../../../context/CardContext";
+import { useProduct } from "../../../context/ProductContext";
 
 const logoImg =
   "https://s3-alpha-sig.figma.com/img/172f/d63a/d150aa0f5d84b468ec611096b7781c10?Expires=1719187200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=gsTAb4MsUH4XTJi-kYysHWZlS4xRek39Bysh29meqdpS0zK1data1l-vcG22YNBbycjXGoA8xapnINCpvPeZlvR5VyVAk4KsDzYcwiAS~X4vBJL1656SxSpdyreAOBb1zcTr~69dscAO57o1eB~AYy24dztJSOeAMjm-cbevyTnUf-Cp3IqFwK8CohSpeJcpU3R4ROW6WfEf1QiVUV9cuQC7e-m-9lM7Lj1d7x9qRbQeOLnwBlBROMoa7klwIxUd4J4rGfUSH5yIeRJdLUD8uNLYO5sooCTfyiQMT00z28YjfPwhIx-lKUNdAixEt~fHMHbogl4JUid1vb8vUOQECQ__";
 
 const Header = () => {
   const { user, logOutUser } = useAuth();
+  const { comments } = useProduct();
+  const { card } = useCard();
   const [modal, setModal] = useState(false);
   const navigate = useNavigate();
 
@@ -29,7 +34,11 @@ const Header = () => {
         <div className={scss.content}>
           <div className={scss.logo}>
             <img src={logoImg} alt="" />
-            <AdminPanel />
+            {user
+              ? ADMIN.map((item) =>
+                  user.email === item.email ? <AdminPanel /> : ""
+                )
+              : ""}
           </div>
           <nav className={scss.nav}>
             <button
@@ -48,7 +57,7 @@ const Header = () => {
             </button>
             <button
               onClick={() => {
-                navigate("/");
+                navigate("/about");
               }}
             >
               ABOUT
@@ -56,13 +65,21 @@ const Header = () => {
             {user ? (
               <div className={scss.icons}>
                 <div className={scss.user}>
-                  <Tooltip title={user.email}>
+                  {modal ? (
                     <Avatar
                       onClick={() => {
                         openModal();
                       }}
                     />
-                  </Tooltip>
+                  ) : (
+                    <Tooltip title={user.email}>
+                      <Avatar
+                        onClick={() => {
+                          openModal();
+                        }}
+                      />
+                    </Tooltip>
+                  )}
                   {modal ? (
                     <div className={scss.modal}>
                       <button
@@ -70,12 +87,13 @@ const Header = () => {
                           openModal();
                         }}
                       >
-                        edit
+                        {user.email}
                       </button>
                       <button
                         onClick={() => {
                           openModal();
                           logOutUser();
+                          navigate("/");
                         }}
                       >
                         logout
@@ -85,14 +103,18 @@ const Header = () => {
                     ""
                   )}
                 </div>
-                <FavoriteIcon />
-                <WorkIcon onClick={() => navigate("/basket")} />
+                <Badge color="secondary" badgeContent={comments.length}>
+                  <MailIcon onClick={() => navigate("/message")} />
+                </Badge>
+                <Badge color="secondary" badgeContent={card.products.length}>
+                  <WorkIcon onClick={() => navigate("/basket")} />
+                </Badge>
               </div>
             ) : (
               <div className={scss.btns}>
                 <button
                   onClick={() => {
-                    navigate("/loginClient");
+                    navigate("/login");
                   }}
                 >
                   Sign In

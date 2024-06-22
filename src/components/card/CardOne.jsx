@@ -2,8 +2,10 @@ import {} from "react";
 import scss from "./Card.module.scss";
 import { useCard } from "../../context/CardContext";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const CardOne = ({ oneProduct }) => {
+  const { user } = useAuth();
   const { addProductToCard, checkProductInCard } = useCard();
   const navigate = useNavigate();
 
@@ -16,7 +18,7 @@ const CardOne = ({ oneProduct }) => {
         <div className={scss.box}>
           <div className={scss.txt}>
             <h1>{oneProduct.name}</h1>
-            <p>{oneProduct.price} com</p>
+            <p>{oneProduct.price} сом</p>
           </div>
           <table>
             <tr>
@@ -44,34 +46,57 @@ const CardOne = ({ oneProduct }) => {
               </td>
             </tr>
           </table>
-          <div className={scss.btns}>
-            {checkProductInCard(oneProduct.id) ? (
-              <button
-                disabled
-                style={{ background: "gray", cursor: "context-menu" }}
-              >
-                ALLREADY TO BASKET
-              </button>
-            ) : (
+          {!user ? (
+            <div className={scss.btns}>
               <button
                 onClick={() => {
-                  addProductToCard(oneProduct);
+                  navigate("/login");
                 }}
                 style={{ background: "#006eff" }}
               >
                 ADD TO BASKET
               </button>
-            )}
-            <button
-              onClick={() => navigate("/")}
-              style={{
-                border: "1px solid #212529",
-                color:"#212529"
-              }}
-            >
-              BACK TO HOME
-            </button>
-          </div>
+
+              <button
+                onClick={() => navigate("/")}
+                style={{
+                  border: "1px solid #212529",
+                  color: "#212529",
+                }}
+              >
+                BACK TO HOME
+              </button>
+            </div>
+          ) : (
+            <div className={scss.btns}>
+              {checkProductInCard(oneProduct.id) ? (
+                <button
+                  disabled
+                  style={{ background: "gray", cursor: "context-menu" }}
+                >
+                  ALLREADY TO BASKET
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    addProductToCard(oneProduct);
+                  }}
+                  style={{ background: "#006eff" }}
+                >
+                  ADD TO BASKET
+                </button>
+              )}
+              <button
+                onClick={() => navigate("/")}
+                style={{
+                  border: "1px solid #212529",
+                  color: "#212529",
+                }}
+              >
+                BACK TO HOME
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

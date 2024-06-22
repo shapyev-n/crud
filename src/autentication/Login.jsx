@@ -3,15 +3,14 @@ import scss from "./Auth.module.scss";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useAuth } from "../context/AuthContext";
-import img from "./registerImg.png";
+import img from "./login.png";
 import GoogleIcon from "@mui/icons-material/Google";
 import { useNavigate } from "react-router-dom";
 
-const Register = () => {
+const Login = () => {
   const { register, signInGoogle } = useAuth();
 
   const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -23,7 +22,7 @@ const Register = () => {
 
   async function signUp() {
     try {
-      await register(firstName, lastName, email, password);
+      await register(email || firstName, password);
     } catch (error) {
       setError(error.message);
     }
@@ -40,31 +39,15 @@ const Register = () => {
   console.log(error);
   return (
     <div className="container">
-      <div className={scss.register}>
+      <div className={scss.login}>
         <div className={scss.content}>
           <div className={scss.box}>
             <div className={scss.txt}>
-              <h1>Register Yourself</h1>
-              <p>Begin your journey with us today</p>
-            </div>
-            <div className={scss.inps}>
-              <div className={scss.inp}>
-                <p>First Name</p>
-                <input
-                  type="text"
-                  onChange={(e) => setFirstName(e.target.value)}
-                />
-              </div>
-              <div className={scss.inp}>
-                <p>Last Name</p>
-                <input
-                  type="text"
-                  onChange={(e) => setLastName(e.target.value)}
-                />
-              </div>
+              <h1>Welcome Back</h1>
+              <p>Sign in to continue your progress</p>
             </div>
             <div className={scss.inp}>
-              <p>Email</p>
+              <p>Email / Username</p>
               <input
                 className={scss.email}
                 type="text"
@@ -76,7 +59,9 @@ const Register = () => {
               <div className={scss.pass}>
                 <input
                   type={pass ? "password" : "text"}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) =>
+                    setPassword(e.target.value) || setFirstName(e.target.value)
+                  }
                 />
                 <span
                   onClick={() => {
@@ -102,30 +87,19 @@ const Register = () => {
                   <div onClick={() => checked()} className={scss.checkBox}>
                     <span>✓</span>
                   </div>
-                )}
-                <p>
-                  I accept the <span>Terms & Conditions</span>
-                </p>
+                )}{" "}
+                <p>Remember me</p>
               </div>
+              <p>Forget password?</p>
             </div>
             <div className={scss.btns}>
-              {!firstName || !lastName || !email || !password || checkboxsed ? (
-                <button
-                  disabled
-                  style={{ background: "grey", cursor: "default" }}
-                >
-                  sign up
-                </button>
-              ) : (
-                <button
-                  className={scss.button}
-                  onClick={() => {
-                    signUp();
-                  }}
-                >
-                  sign up
-                </button>
-              )}
+              <button
+                onClick={() => {
+                  signUp();
+                }}
+              >
+                sign in
+              </button>
               <span>or</span>
               <button
                 className={scss.google}
@@ -138,12 +112,12 @@ const Register = () => {
               </button>
             </div>
             <p className={scss.p}>
-              Already signed up ?
-              <span onClick={() => navigate("/login")}>Click Here</span>
+              Don’t have an account?
+              <span onClick={() => navigate("/register")}>Register Here</span>
             </p>
           </div>
         </div>
-        <div className={scss.box}>
+        <div className={scss.boxLogin}>
           <div className={scss.circle}></div>
           <div className={scss.img}>
             <img src={img} alt="image" />
@@ -154,4 +128,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

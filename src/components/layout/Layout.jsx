@@ -11,7 +11,7 @@ const Layout = () => {
       <main >
         <MainRoutes />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

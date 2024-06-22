@@ -5,13 +5,18 @@ import NotFoundPage from "../pages/NotFoundPage";
 import AdminPage from "../pages/AdminPage";
 import EditPage from "../pages/EditPage";
 import ListProduct from "../components/products/ListProduct";
-import LoginAdmin from "../autentication/LoginAdmin";
-import LoginClient from "../autentication/LoginClient";
 import Register from "../autentication/Register";
 import DetailsPage from "../pages/DetailsPage";
 import CardBasket from "../components/card/CardBasket";
+import Login from "../autentication/Login";
+import { useAuth } from "../context/AuthContext";
+import { ADMIN } from "../helpers/const";
+import AboutPage from "../pages/AboutPage";
+import Message from "../components/Message";
 
 const MainRoutes = () => {
+  const { user } = useAuth();
+
   const privat = [
     {
       path: "/admin",
@@ -41,13 +46,8 @@ const MainRoutes = () => {
       id: Date.now(),
     },
     {
-      path: "/loginAdmin",
-      element: <LoginAdmin />,
-      id: Date.now(),
-    },
-    {
-      path: "/loginClient",
-      element: <LoginClient />,
+      path: "/login",
+      element: <Login />,
       id: Date.now(),
     },
     {
@@ -65,9 +65,32 @@ const MainRoutes = () => {
       element: <CardBasket />,
       id: Date.now(),
     },
+    {
+      path: "/about",
+      element: <AboutPage />,
+      id: Date.now(),
+    },
+    {
+      path: "/message",
+      element: <Message />,
+      id: Date.now(),
+    },
   ];
   return (
     <Routes>
+      {user
+        ? ADMIN.map((el) =>
+            user.email === el.email
+              ? privat.map((item) => (
+                  <Route
+                    path={item.path}
+                    element={item.element}
+                    key={item.id}
+                  />
+                ))
+              : null
+          )
+        : null}
       {privat.map((el) => (
         <Route path={el.path} element={el.element} key={el.id} />
       ))}

@@ -37,6 +37,17 @@
           border-radius: 8px;
           outline: none;
         }
+        .pass {
+          width: 385px;
+          height: 43px;
+          display: flex;
+          align-items: center;
+          position: relative;
+          span {
+            position: absolute;
+            right: 20px;
+          }
+        }
         button {
           width: 141px;
           background: #adb5bd;
@@ -56,7 +67,6 @@
         align-items: center;
         justify-content: flex-end;
         gap: 80px;
-
       }
     }
   }

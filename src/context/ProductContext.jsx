@@ -7,8 +7,16 @@ import {
   getDocs,
   updateDoc,
 } from "firebase/firestore";
-import { createContext, useContext, useReducer, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import { db } from "../firebase";
+import { useAuth } from "./AuthContext";
+import axios from "axios";
 
 const productContext = createContext();
 export const useProduct = () => useContext(productContext);
@@ -16,6 +24,7 @@ export const useProduct = () => useContext(productContext);
 const init_state = {
   data: [],
   oneProduct: {},
+  comments: [],
 };
 
 const reducer = (state = init_state, action) => {
@@ -24,11 +33,14 @@ const reducer = (state = init_state, action) => {
       return { ...state, data: action.payload };
     case "GET_ONE":
       return { ...state, oneProduct: action.payload };
+    case "GET_MESSAGE":
+      return { ...state, comments: action.payload };
     default:
       return state;
   }
 };
 
+// !GLOBAL function date
 const parseDateString = (dateString) => {
   const [datePart, timePart] = dateString.split(", ");
   const [day, month, year] = datePart.split(".");
@@ -36,8 +48,11 @@ const parseDateString = (dateString) => {
 };
 
 const ProductContext = ({ children }) => {
+  const { user } = useAuth();
   const [state, dispatch] = useReducer(reducer, init_state);
+
   const productCollectionRef = collection(db, "data");
+  const commentsCollectionRef = collection(db, "comments");
 
   // !add product
   async function addProduct(newProduct) {
@@ -147,6 +162,49 @@ const ProductContext = ({ children }) => {
     });
   }
 
+  // !COMMENTS
+  async function addComment(newComment) {
+    await addDoc(commentsCollectionRef, newComment);
+    conentSendTelegramm(newComment);
+    getComments();
+  }
+
+  async function getComments() {
+    let data = await getDocs(commentsCollectionRef);
+    data = data.docs
+      .map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }))
+      .sort((a, b) => parseDateString(a.date) - parseDateString(b.date));
+    dispatch({ type: "GET_MESSAGE", payload: data });
+  }
+
+  useEffect(() => {
+    getComments();
+  }, []);
+
+  async function deleteComment(id) {
+    let productRef = doc(db, "comments", id);
+    await deleteDoc(productRef);
+    getComments();
+  }
+
+  // !BOT
+  const TOCEN_API = `7464205890:AAFRfRBD0jz3Oyui62qxcm1Laiffg7CZmsY`;
+  const URL_API = `https://api.telegram.org/bot${TOCEN_API}/sendMessage`;
+  const MY_ID = `-1002181740989`;
+
+  async function conentSendTelegramm(comment) {
+    let valuesTelegramm = `${user.email}\n${comment.txt}`;
+    let obj = {
+      chat_id: MY_ID,
+      parse_mode: "html",
+      text: valuesTelegramm,
+    };
+    await axios.post(URL_API, obj);
+  }
+
   const values = {
     addProduct,
     readProduct,
@@ -161,6 +219,10 @@ const ProductContext = ({ children }) => {
     filterProductsByPrice,
     getPriceRange,
     filterProductsByCategoryBrandType,
+    addComment,
+    getComments,
+    comments: state.comments,
+    deleteComment,
   };
 
   return (

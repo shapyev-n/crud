@@ -1,15 +1,6 @@
-export const ACTION = {
-  GET: "GET",
-  GET_ONE: "GET_ONE",
-};
-
-export const SELLER = [
+export const ADMIN = [
   {
-    login: "@seller",
-    password: "q1q1q1q1",
-  },
-  {
-    login: "@admin",
-    password: 12121212,
+    email: "admin@gmail.com",
+    password: "12121212",
   },
 ];

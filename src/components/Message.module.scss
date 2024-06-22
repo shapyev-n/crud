@@ -1,0 +1,146 @@
+#message {
+  min-height: 50vh;
+  background: #09044633;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  .h1 {
+    width: 95%;
+    margin: 0 auto;
+    background: #09044633;
+    backdrop-filter: blur(100px);
+    margin-bottom: auto;
+    position: sticky;
+    inset: 0;
+    z-index: 1;
+    h1 {
+      font-size: 26px;
+      padding: 20px;
+    }
+  }
+  .message {
+    width: 95%;
+    margin-inline: auto;
+    padding: 20px;
+    border-left: #090446 1px solid;
+    border-right: #090446 1px solid;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .myMessage {
+      flex-direction: row-reverse;
+      .user {
+        .userInfo {
+          span {
+            color: #ee2929;
+          }
+        }
+        p {
+          color: #5dee29;
+        }
+      }
+    }
+    .myMessage,
+    .users {
+      display: flex;
+      align-items: flex-end;
+      gap: 5px;
+      &:hover {
+        .user {
+          .date {
+            display: block;
+          }
+        }
+      }
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      .user {
+        min-width: 110px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        opacity: 0.8;
+        padding: 10px 10px 20px;
+        background: #68657a53;
+        border-radius: 20px;
+        position: relative;
+        .date {
+          display: none;
+          position: absolute;
+          bottom: 0;
+          right: 10px;
+          font-size: 8px;
+          opacity: 0.7;
+          transition: 1s;
+          &:hover {
+            color: red;
+          }
+        }
+        .userInfo {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          p {
+            font-size: 12px;
+            color: #ee8529;
+          }
+        }
+        p {
+          font-size: 12px;
+          color: #ee8529;
+        }
+        span {
+          font-size: 14px;
+          line-height: 15px;
+          letter-spacing: 0.7px;
+          opacity: 0.6;
+        }
+      }
+    }
+  }
+  .send {
+    width: 95%;
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    background: #09044633;
+    overflow: hidden;
+    border-radius: 20px;
+    position: sticky;
+    inset: 0;
+    bottom: 0;
+    z-index: 1;
+    backdrop-filter: blur(100px);
+    input {
+      width: 80%;
+      height: 50px;
+      padding: 0 20px;
+      color: #090446;
+      background: transparent;
+      border: 0;
+      outline: none;
+      &::placeholder {
+        color: #090446;
+        opacity: 0.5;
+      }
+    }
+    button {
+      width: 20%;
+      height: 40px;
+      border-radius: 16px;
+      margin-right: 5px;
+      border: 0;
+      background: #0a044652;
+      color: #090446;
+      font-weight: 600;
+      transition: 0.5s;
+      &:active {
+        transform: scaleY(1.1);
+      }
+    }
+  }
+}

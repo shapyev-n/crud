@@ -1,9 +1,11 @@
-import {} from "react";
 import scss from "./Card.module.scss";
 import { useCard } from "../../context/CardContext";
+import { useNavigate } from "react-router-dom";
 
 const CardBasket = () => {
-  const { card, deleteProductFromCard } = useCard();
+  const { card, deleteProductFromCard, changeProduct, sendProduct } = useCard();
+  const navigate = useNavigate();
+
   return (
     <div id={scss.cardBasket}>
       <div className="container">
@@ -27,23 +29,49 @@ const CardBasket = () => {
                     <span>{el.item.name}</span>
                   </div>
                   <div className={scss.count}>
-                    <button>-</button>
-                    <span>10</span>
-                    <button>+</button>
+                    <button
+                      disabled={el.count <= 1}
+                      onClick={() => changeProduct(el.count - 1, el.item.id)}
+                    >
+                      -
+                    </button>
+                    <span>{el.count}</span>
+                    <button
+                      disabled={el.count >= 10}
+                      onClick={() => changeProduct(el.count + 1, el.item.id)}
+                    >
+                      +
+                    </button>
                   </div>
-                  <p>{el.item.price} som</p>
+                  <p>{el.subPrice} сом</p>
                 </div>
               ))}
-
-              <h1>1000 som</h1>
             </div>
             <div className={scss.btns}>
-              <button>CONTINUE SHOPING</button>
-              <button>PROCEED TO CHECKOUT</button>
+              <button
+                onClick={() => {
+                  navigate("/list");
+                }}
+              >
+                CONTINUE SHOPING
+              </button>
+              <span style={{ color: "#fff" }}>{card.totalCount} сом</span>
+              <button
+                onClick={() => {
+                  sendProduct(card.products);
+                }}
+              >
+                PROCEED TO CHECKOUT
+              </button>
             </div>
           </div>
         ) : (
-          <h1>Loading...</h1>
+          <div className={scss.empty}>
+            <h1>The basket is empty! :(</h1>
+            <button onClick={() => navigate("/list")}>
+              go to product selection
+            </button>
+          </div>
         )}
       </div>
     </div>

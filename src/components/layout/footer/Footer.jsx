@@ -21,7 +21,7 @@ const Footer = () => {
 
   function next() {
     if (email && !reg) {
-      setReg(true);
+      setReg(true)&&setReg;
     } else {
       setReg(false);
     }
@@ -48,7 +48,6 @@ const Footer = () => {
       email: user.email,
       image: user.photoURL,
       txt: value,
-      id: Date.now(),
       date: date.toLocaleString(),
     };
     addComment(newComment);
@@ -142,6 +141,7 @@ const Footer = () => {
               </div>
             )}
           </div>
+          <hr />
           <div className={scss.right}>
             <h2>STAY UP TO DATE</h2>
             <h1>Follow Us</h1>

@@ -51,8 +51,8 @@ const HomePage = () => {
                     <div className={scss.card}></div>
                   </div>
                 )}
-                <button className={scss.left}>⫹</button>
-                <button className={scss.right}>⫺</button>
+                <button className={scss.left}><span>⫹</span></button>
+                <button className={scss.right}><span>⫺</span></button>
               </div>
             </div>
           </div>

@@ -1,8 +1,10 @@
 import {} from "react";
 import scss from "./pages.module.scss";
 import Message from "../components/Message";
+import { useAuth } from "../context/AuthContext";
 
 const AboutPage = () => {
+  const { user } = useAuth();
   return (
     <div className={scss.about}>
       <div className="container">
@@ -11,7 +13,7 @@ const AboutPage = () => {
           <p>Здесь можно разместить рекламы</p>
         </div>
       </div>
-      <Message />
+      {user ? <Message /> : ""}
     </div>
   );
 };

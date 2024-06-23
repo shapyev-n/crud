@@ -31,9 +31,7 @@
       .content {
         overflow-x: scroll;
         display: flex;
-        // gap: 13px;
         gap: 1.3vw;
-        // padding: 20px 15px;
         padding: 2vw 1.5vw;
         .card {
           width: 270px;
@@ -91,24 +89,26 @@
         }
       }
       button {
-        width: 5%;
-        height: 100%;
+        width: 3%;
+        // height: 100%;
         font-size: 3vw;
         border: 0;
         background: transparent;
         transform: scaleY(2);
+        cursor: context-menu;
+        position: absolute;
+        z-index: 10;
+        span {
+          cursor: pointer;
+        }
       }
       .left {
-        position: absolute;
         left: -4vw;
-        bottom: 2vw;
-        z-index: 10;
+        top: 15vw;
       }
       .right {
-        position: absolute;
         right: -4vw;
-        bottom: 2vw;
-        z-index: 1;
+        top: 15vw;
       }
     }
   }
@@ -127,6 +127,7 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 50px;
+    overflow: hidden;
     p {
       opacity: 0.5;
       rotate: -20deg;
@@ -164,6 +165,7 @@
 
 @media (min-width: 1440px) {
   .home {
+    padding-top: 30px;
     .box {
       padding-block: 30px;
       gap: 20px;
@@ -212,11 +214,31 @@
         }
         .left {
           left: -50px;
-          bottom: 20px;
+          top: 170px;
         }
         .right {
           right: -50px;
-          bottom: 20px;
+          top: 170px;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 500px) {
+  .home {
+    .main {
+      .scroll {
+        button {
+          transform: scaleY(5);
+          font-size: 5vw;
+        }
+        .left {
+          left: -3.5vw;
+          top: 40vw;
+        }
+        .right {
+          right: -3.5vw;
+          top: 40vw;
         }
       }
     }

@@ -92,10 +92,10 @@ const Login = () => {
                     <div onClick={() => checked()} className={scss.checkBox}>
                       <span>✓</span>
                     </div>
-                  )}{" "}
+                  )}
                   <p>Remember me</p>
                 </div>
-                <p>Forget password?</p>
+                <p className={scss.forget}>Forget password?</p>
               </div>
               <div className={scss.btns}>
                 <button

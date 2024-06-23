@@ -30,4 +30,11 @@ body.dark {
   background: #000;
 }
 
+@media (max-width:500px){
+  body{
+    .container{
+      width: 90%;
+    }
+  }
+}
 

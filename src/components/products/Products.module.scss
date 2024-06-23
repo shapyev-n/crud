@@ -29,6 +29,7 @@
             font-weight: 600;
           }
           .price {
+            display: flex;
             align-items: flex-end;
             justify-content: space-between;
             padding-left: 0;
@@ -45,6 +46,7 @@
           }
           button {
             display: flex;
+            height: 2vw;
             align-items: center;
             gap: 0.694vw;
             background: transparent;
@@ -56,15 +58,23 @@
             transition: 1s;
             &:focus {
               opacity: 1;
+              p,
               span {
-                font-size: 1.25vw;
+                padding-left: 0.694vw;
                 font-weight: bold;
+                scale: 1.2;
               }
             }
+
             span {
               font-size: 1.042vw;
               font-weight: 400;
               transition: 0.5s;
+            }
+            p {
+              font-size: 1vw;
+              transition: 0.5s;
+              opacity: 0.5;
             }
           }
         }

@@ -5,7 +5,7 @@ import WorkIcon from "@mui/icons-material/Work";
 import { useNavigate } from "react-router-dom";
 import AdminPanel from "../../admin/AdminPanel";
 import { useAuth } from "../../../context/AuthContext";
-import { Avatar, Badge, Tooltip } from "@mui/material";
+import { Avatar, Tooltip } from "@mui/material";
 import { ADMIN } from "../../../helpers/const";
 import { useCard } from "../../../context/CardContext";
 import { useProduct } from "../../../context/ProductContext";
@@ -17,6 +17,7 @@ const Header = () => {
   const { user, logOutUser } = useAuth();
   const { comments } = useProduct();
   const { card } = useCard();
+
   const [modal, setModal] = useState(false);
   const navigate = useNavigate();
 
@@ -66,19 +67,25 @@ const Header = () => {
               <div className={scss.icons}>
                 <div className={scss.user}>
                   {modal ? (
-                    <Avatar
-                      onClick={() => {
-                        openModal();
-                      }}
-                    />
-                  ) : (
-                    <Tooltip title={user.email}>
+                    <div className={scss.avatar}>
                       <Avatar
                         onClick={() => {
                           openModal();
                         }}
+                        sx={{ width: "100%", height: "100%" }}
                       />
-                    </Tooltip>
+                    </div>
+                  ) : (
+                    <div className={scss.avatar}>
+                      <Tooltip title={user.email}>
+                        <Avatar
+                          onClick={() => {
+                            openModal();
+                          }}
+                          sx={{ width: "100%", height: "100%" }}
+                        />
+                      </Tooltip>
+                    </div>
                   )}
                   {modal ? (
                     <div className={scss.modal}>
@@ -103,12 +110,45 @@ const Header = () => {
                     ""
                   )}
                 </div>
-                <Badge color="secondary" badgeContent={comments.length}>
-                  <MailIcon onClick={() => navigate("/message")} />
-                </Badge>
-                <Badge color="secondary" badgeContent={card.products.length}>
-                  <WorkIcon onClick={() => navigate("/basket")} />
-                </Badge>
+                <div className={scss.push}>
+                  {comments.length > 0 ? (
+                    <div className={scss.badgeMessage}>
+                      <MailIcon
+                        sx={{ width: "100%", height: "100%" }}
+                        onClick={() => navigate("/message")}
+                      />
+                      <span>{comments.length}</span>
+                    </div>
+                  ) : (
+                    <div className={scss.badgeMessage}>
+                      <MailIcon
+                        sx={{ width: "100%", height: "100%" }}
+                        onClick={() => navigate("/message")}
+                      />
+                    </div>
+                  )}
+                  {card.products.length > 0 ? (
+                    <div className={scss.badgeBasket}>
+                      <WorkIcon
+                        sx={{
+                          width: "100%",
+                          height: "100%",
+                          padding: 0,
+                          margin: 0,
+                        }}
+                        onClick={() => navigate("/basket")}
+                      />
+                      <span>{card.products.length}</span>
+                    </div>
+                  ) : (
+                    <div className={scss.badgeBasket}>
+                      <WorkIcon
+                        sx={{ width: "100%", height: "100%" }}
+                        onClick={() => navigate("/basket")}
+                      />
+                    </div>
+                  )}
+                </div>
               </div>
             ) : (
               <div className={scss.btns}>

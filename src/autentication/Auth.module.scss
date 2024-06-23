@@ -138,6 +138,12 @@
               }
             }
           }
+          .forget {
+            cursor: pointer;
+            &:active {
+              opacity: 0.6;
+            }
+          }
         }
         .btns {
           width: 100%;
@@ -216,5 +222,69 @@
         z-index: -1;
       }
     }
+  }
+}
+
+@media (max-width: 500px) {
+  #login,
+  #register {
+    .register,
+    .login {
+      .content {
+        width: 100%;
+        .box {
+          width: 95%;
+          .checkbox {
+            div {
+              p {
+                padding-left: 0;
+              }
+            }
+            p {
+              padding-left: 30px;
+              font-size: 16px;
+            }
+          }
+          .p {
+            flex-direction: column;
+          }
+        }
+      }
+      .boxLogin {
+        width: 1px;
+        .circle {
+          right: 200px;
+          animation: reg 1s alternate ease-in-out;
+          z-index: 1;
+        }
+      }
+      .box {
+        width: 1px;
+        .circle {
+          left: 200px;
+          animation: log 1s alternate ease-in-out;
+          z-index: 1;
+        }
+      }
+    }
+  }
+}
+
+@keyframes log {
+  from {
+    left: -700px;
+    top: -400px;
+  }
+  to {
+    top: 400px;
+    right: 600px;
+  }
+}
+@keyframes reg {
+  from {
+    right: -600px;
+  }
+  to {
+    right: 600px;
   }
 }

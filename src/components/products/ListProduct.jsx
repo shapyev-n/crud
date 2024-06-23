@@ -74,6 +74,27 @@ const ListProduct = () => {
     readProduct();
   };
 
+  // !counts fiter
+  // ?category
+  let res_category = data.map((el) => el.category);
+  let men = res_category.filter((e) => e === "man").length;
+  let women = res_category.filter((e) => e === "women").length;
+  let unisex = res_category.filter((e) => e === "unisex").length;
+
+  // ?brand
+  let res_brand = data.map((el) => el.brand);
+  let dior = res_brand.filter((e) => e === "dior").length;
+  let versace = res_brand.filter((e) => e === "versace").length;
+  let prada = res_brand.filter((e) => e === "prada").length;
+  let tom_ford = res_brand.filter((e) => e === "tom_ford").length;
+
+  // ?type
+  let res_type = data.map((el) => el.type);
+  let elixir = res_type.filter((e) => e === "elixir").length;
+  let cologne = res_type.filter((e) => e === "cologne").length;
+  let perfume = res_type.filter((e) => e === "perfume").length;
+  let eua_de_toilette = res_type.filter((e) => e === "eua_de_toilette").length;
+
   return (
     <>
       <div className={scss.main}>
@@ -83,13 +104,14 @@ const ListProduct = () => {
               <div className={scss.box}>
                 <p>CATEGORY</p>
                 <button onClick={() => handleCategoryClick("man")}>
-                  {i} <span>MEN</span>
+                  {i} <span>MEN</span> <p>({men})</p>
                 </button>
                 <button onClick={() => handleCategoryClick("women")}>
-                  {i} <span>WOMEN</span>
+                  {i} <span>WOMEN</span> <p>({women})</p>
                 </button>
                 <button onClick={() => handleCategoryClick("unisex")}>
                   {i} <span>UNISEX</span>
+                  <p>({unisex})</p>
                 </button>
               </div>
               <div className={scss.box}>
@@ -105,44 +127,52 @@ const ListProduct = () => {
                     max={priceRange.max}
                   />
                 </Box>
-                <button className={scss.price}>
+                <div className={scss.price}>
                   <p>
                     Price: {value[0]} - {value[1]}
                   </p>
                   <span>Filter</span>
-                </button>
+                </div>
               </div>
               <div className={scss.box}>
                 <p>BRAND</p>
                 <button onClick={() => handleBrandClick("dior")}>
                   {i} <span>DIOR</span>
+                  <p>({dior})</p>
                 </button>
                 <button onClick={() => handleBrandClick("versace")}>
                   {i} <span>VERSACE</span>
+                  <p>({versace})</p>
                 </button>
                 <button onClick={() => handleBrandClick("prada")}>
                   {i} <span>PRADA</span>
+                  <p>({prada})</p>
                 </button>
                 <button onClick={() => handleBrandClick("tom_ford")}>
                   {i} <span>TOM FORD</span>
+                  <p>({tom_ford})</p>
                 </button>
               </div>
               <div className={scss.box}>
                 <p>TYPE</p>
                 <button onClick={() => handleTypeClick("elixir")}>
                   {i} <span>ELIXIR</span>
+                  <p>({elixir})</p>
                 </button>
                 <button onClick={() => handleTypeClick("cologne")}>
                   {i} <span>COLOGNE</span>
+                  <p>({cologne})</p>
                 </button>
                 <button onClick={() => handleTypeClick("perfume")}>
                   {i} <span>PERFUME</span>
+                  <p>({perfume})</p>
                 </button>
                 <button onClick={() => handleTypeClick("eau_de_toilette")}>
                   {i} <span>EAU DE TOILETTE</span>
+                  <p>({eua_de_toilette})</p>
                 </button>
               </div>
-              <p onClick={handleResetFilters}>all</p>
+              <p onClick={handleResetFilters}>all ({data.length})</p>
             </div>
           </div>
           <div className={scss.products}>
